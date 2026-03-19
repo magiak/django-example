@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+.venv/
+*.egg
+
+# Django
+*.sqlite3
+media/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Node
+node_modules/
+frontend/dist/
+
+# Docker
+pgdata/
+
+# OS
+.DS_Store
+Thumbs.db
