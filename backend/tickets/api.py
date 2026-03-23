@@ -2,7 +2,7 @@ from uuid import UUID
 
 from ninja import Router
 
-from shared.exceptions import DomainException, NotFoundError
+from shared.exceptions import DomainError, NotFoundError
 
 from . import services
 from .schemas import (
@@ -47,7 +47,7 @@ def update_ticket_status(request, ticket_id: UUID, payload: TicketStatusIn):
         return ticket
     except NotFoundError as e:
         return 404, {"detail": e.message}
-    except DomainException as e:
+    except DomainError as e:
         return 400, {"detail": e.message}
 
 

@@ -19,15 +19,18 @@ def create_article(*, title: str, content: str, category: str, tags: list[str], 
     # Trigger async tag generation if no tags provided
     if not tags:
         from .tasks import generate_tags_task
+
         generate_tags_task.send(str(article.id))
     return article
+
 
 def get_article(*, article_id: UUID) -> Article:
     """Retrieve an article by ID or raise NotFoundError."""
     try:
         return Article.objects.get(id=article_id)
     except Article.DoesNotExist:
-        raise NotFoundError("Article", str(article_id))
+        raise NotFoundError("Article", str(article_id)) from None
+
 
 def list_articles(*, category: str | None = None) -> list[Article]:
     """List articles with optional category filter."""
@@ -60,10 +63,11 @@ def transition_article(*, article_id: UUID, new_status: str) -> Article:
     try:
         article = Article.objects.select_for_update().get(id=article_id)
     except Article.DoesNotExist:
-        raise NotFoundError("Article", str(article_id))
+        raise NotFoundError("Article", str(article_id)) from None
     article.transition_to(new_status)
     article.save()
     return article
+
 
 def generate_tags(*, article_id: UUID) -> list[str]:
     """Generate tags for an article via LLM."""

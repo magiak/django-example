@@ -3,7 +3,9 @@
     "allow": [
       "WebSearch",
       "Bash(gh repo:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(source /c/Users/lukas/source/repos/magiak/django-example/backend/.venv/Scripts/activate)",
+      "Bash(ruff check:*)"
     ]
   }
 }

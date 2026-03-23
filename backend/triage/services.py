@@ -11,7 +11,7 @@ def get_classification(*, ticket_id: UUID) -> Classification:
     try:
         return Classification.objects.get(ticket_id=ticket_id)
     except Classification.DoesNotExist:
-        raise NotFoundError("Classification", str(ticket_id))
+        raise NotFoundError("Classification", str(ticket_id)) from None
 
 
 def classify_ticket(*, ticket_id: UUID) -> Classification:
@@ -19,7 +19,7 @@ def classify_ticket(*, ticket_id: UUID) -> Classification:
     try:
         ticket = Ticket.objects.get(id=ticket_id)
     except Ticket.DoesNotExist:
-        raise NotFoundError("Ticket", str(ticket_id))
+        raise NotFoundError("Ticket", str(ticket_id)) from None
 
     # Idempotency: skip if already classified for this version
     existing = Classification.objects.filter(ticket=ticket, ticket_version=ticket.version).first()

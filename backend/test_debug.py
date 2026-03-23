@@ -2,7 +2,7 @@
 
 
 def add(a: int, b: int) -> int:
-    result = a + b      # <-- put breakpoint here (line 5)
+    result = a + b  # <-- put breakpoint here (line 5)
     return result
 
 

@@ -1,4 +1,4 @@
-class DomainException(Exception):
+class DomainError(Exception):
     """Base exception for domain-level errors."""
 
     def __init__(self, message: str, code: str = "domain_error") -> None:
@@ -7,7 +7,7 @@ class DomainException(Exception):
         super().__init__(message)
 
 
-class NotFoundError(DomainException):
+class NotFoundError(DomainError):
     """Raised when a domain entity is not found."""
 
     def __init__(self, entity: str, identifier: str) -> None:
@@ -17,7 +17,7 @@ class NotFoundError(DomainException):
         )
 
 
-class InvalidTransitionError(DomainException):
+class InvalidTransitionError(DomainError):
     """Raised when an invalid state transition is attempted."""
 
     def __init__(self, entity: str, current_state: str, target_state: str) -> None:

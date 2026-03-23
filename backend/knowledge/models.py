@@ -3,16 +3,19 @@ from django.db import models
 from shared.exceptions import InvalidTransitionError
 from shared.models import UUIDModel
 
+
 class ArticleStatus(models.TextChoices):
     DRAFT = "draft", "Draft"
     PUBLISHED = "published", "Published"
     ARCHIVED = "archived", "Archived"
+
 
 VALID_TRANSITIONS = {
     "draft": ["published"],
     "published": ["archived", "draft"],
     "archived": ["draft"],
 }
+
 
 class Article(UUIDModel):
     title = models.CharField(max_length=200)
@@ -39,10 +42,9 @@ class Article(UUIDModel):
 
     def __str__(self) -> str:
         return f"[{self.status}] {self.title}"
-    
+
     def transition_to(self, new_status: str) -> None:
         allowed = VALID_TRANSITIONS.get(self.status, [])
         if new_status not in allowed:
             raise InvalidTransitionError("Article", self.status, new_status)
         self.status = new_status
-

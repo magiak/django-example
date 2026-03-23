@@ -3,7 +3,6 @@ import uuid
 import dramatiq
 import pytest
 
-from shared.exceptions import InvalidTransitionError, NotFoundError
 from knowledge.services import (
     create_article,
     delete_article,
@@ -13,6 +12,7 @@ from knowledge.services import (
     transition_article,
     update_article,
 )
+from shared.exceptions import InvalidTransitionError, NotFoundError
 
 from .factories import ArticleFactory
 

@@ -11,9 +11,7 @@ class Classification(UUIDModel):
     sentiment = models.CharField(max_length=20)
     confidence = models.FloatField()
     model_used = models.CharField(max_length=100)
-    ticket_version = models.PositiveIntegerField(
-        help_text="Ticket version at time of classification, for idempotency."
-    )
+    ticket_version = models.PositiveIntegerField(help_text="Ticket version at time of classification, for idempotency.")
 
     class Meta:
         ordering = ["-created_at"]

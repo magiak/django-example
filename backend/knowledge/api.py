@@ -2,7 +2,7 @@ from uuid import UUID
 
 from ninja import Router
 
-from shared.exceptions import DomainException, NotFoundError
+from shared.exceptions import DomainError, NotFoundError
 
 from . import services
 from .schemas import (
@@ -63,7 +63,7 @@ def update_article_status(request, article_id: UUID, payload: ArticleStatusIn):
         return article
     except NotFoundError as e:
         return 404, {"detail": e.message}
-    except DomainException as e:
+    except DomainError as e:
         return 400, {"detail": e.message}
 
 

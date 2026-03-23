@@ -16,6 +16,7 @@ def create_ticket(*, subject: str, body: str, contact_email: str) -> Ticket:
     )
     # Trigger async classification via Dramatiq
     from triage.tasks import classify_ticket_task
+
     classify_ticket_task.send(str(ticket.id))
     return ticket
 
@@ -25,7 +26,7 @@ def get_ticket(*, ticket_id: UUID) -> Ticket:
     try:
         return Ticket.objects.prefetch_related("comments").get(id=ticket_id)
     except Ticket.DoesNotExist:
-        raise NotFoundError("Ticket", str(ticket_id))
+        raise NotFoundError("Ticket", str(ticket_id)) from None
 
 
 def list_tickets(*, status: str | None = None, priority: str | None = None) -> list[Ticket]:
@@ -50,7 +51,7 @@ def transition_ticket(*, ticket_id: UUID, new_status: str) -> Ticket:
 def add_comment(*, ticket_id: UUID, body: str, author_name: str) -> Comment:
     """Add a comment to a ticket."""
     if not Ticket.objects.filter(id=ticket_id).exists():
-        raise NotFoundError("Ticket", str(ticket_id))
+        raise NotFoundError("Ticket", str(ticket_id)) from None
     return Comment.objects.create(
         ticket_id=ticket_id,
         body=body,
