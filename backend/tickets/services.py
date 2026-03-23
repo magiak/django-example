@@ -14,8 +14,9 @@ def create_ticket(*, subject: str, body: str, contact_email: str) -> Ticket:
         body=body,
         contact_email=contact_email,
     )
-    # Trigger async classification (will be wired in Session 2)
-    # triage.tasks.classify_ticket_task.send(str(ticket.id))
+    # Trigger async classification via Dramatiq
+    from triage.tasks import classify_ticket_task
+    classify_ticket_task.send(str(ticket.id))
     return ticket
 
 

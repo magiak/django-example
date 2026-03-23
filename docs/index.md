@@ -15,6 +15,20 @@ AI-powered support ticket classification, routing, and lifecycle management.
 
 ## Documentation
 
+### Learning (start here if you're a C#/.NET developer)
+- [Learning Path](learning-path.md) — Roadmap and overview
+  1. [Python Syntax](learning/01-python-syntax.md) — Indentation, functions, classes, imports
+  2. [Project Structure](learning/02-project-structure.md) — Settings, URLs, app discovery
+  3. [Models & ORM](learning/03-models-and-orm.md) — Fields, QuerySets, migrations
+  4. [Services](learning/04-services.md) — Business logic, transactions, exceptions
+  5. [API Layer](learning/05-api-layer.md) — Routers, schemas, error handling
+  6. [Background Tasks](learning/06-background-tasks.md) — Dramatiq, Redis, idempotency
+  7. [Testing](learning/07-testing.md) — pytest, factories, assertions
+  8. [Putting It Together](learning/08-putting-it-together.md) — Full flow, mental model
+- [Exercises](learning/exercises.md) — 4 hands-on practice tasks
+- [Python Interview Questions](interview-python.md) — 30 questions with C# comparisons
+- [Django Interview Questions](interview-django.md) — 30 questions with project examples
+
 ### Getting Started
 - [Getting Started](getting-started.md) — Setup, first run, verify it works
 

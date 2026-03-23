@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     "tickets",
     "triage",
     "teams",
+    "knowledge",
 ]
 
 MIDDLEWARE = [
